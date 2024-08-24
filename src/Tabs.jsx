@@ -1,11 +1,19 @@
-import {useState} from "react";
+import {useState,useEffect} from "react";
 import "./App.css";
 
 function Tabs() {
     const [toggleState, setToggleState] = useState(1);
+    useEffect(()=>{
+        let defaultTab = localStorage.getItem("selectedTab")
+        if(defaultTab){
+            setToggleState(parseInt(defaultTab))
+        }
+    },[])
     const toggleTab = (index) => {
         setToggleState(index)
+        localStorage.setItem("selectedTab",index)
     }
+   
     return (
 
         <div className="container">
